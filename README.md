@@ -17,12 +17,12 @@
 |---|-----------------------------------|
 |Language|C, C++, Java, Swift, Python|
 |Role|Team Leader|
-* **김승태 (공학계열, )**
+* **김승태 (공학계열, 3학년, kim-seungtae)**
 
 |title|contents|
 |---|-----------------------------------|
-|Language|C, C++, Java, Swift, Python|
-|Role|Team Leader|
+|Language|C, C++, Python|
+|Role|Team Member|
 * **김예서 (유학동양학과, )**
 
 |title|contents|
