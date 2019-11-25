@@ -10,13 +10,13 @@
 |Language|C, C++, Java, Swift, Python|
 |Role|Team Leader|
 
-* **문성재 (소프트웨어학과, 2학년)**
+* **문성재 (소프트웨어학과, 2학년, LimeMun)**
 
 
 |title|contents|
 |---|-----------------------------------|
-|Language|C, C++, Java, Swift, Python|
-|Role|Team Leader|
+|Language|C, Java, Swift, Python|
+|Role|Team Member|
 * **김승태 (공학계열, 3학년, kim-seungtae)**
 
 |title|contents|
