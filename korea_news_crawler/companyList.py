@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+# -*- coding: utf-8, euc-kr -*-
+
+from time import sleep
+from bs4 import BeautifulSoup
+from multiprocessing import Process
+from korea_news_crawler.exceptions import *
+from korea_news_crawler.articleparser import ArticleParser
+from korea_news_crawler.writer import Writer
+import os
+from urllib.request import urlopen
+import platform
+import calendar
+import requests
+import re
+
+
+class CompanyList(object):
+    def __init__(self):
+        pass
+
+
+
+    @staticmethod
+    def get_url_data(url, max_tries=10):
+        remaining_tries = int(max_tries)
+        while remaining_tries > 0:
+            try:
+                return requests.get(url)
+            except requests.exceptions:
+                sleep(60)
+            remaining_tries = remaining_tries - 1
+        raise ResponseTimeout()
+
+    def crawling(self):
+
+        # 기사 URL 형식
+        url = urlopen("https://news.naver.com/main/officeList.nhn")
+        document = BeautifulSoup(url, 'html.parser')
+
+        # html - newsflash_body - type06_headline, type06
+        # 각 페이지에 있는 기사들 가져오기
+        for link in document.find_all("ul", {"class":"group_list"}):
+            for li in link.find_all("li"):
+                print(li.find("a").get_text())
+
+
+if __name__ == "__main__":
+    Crawler = CompanyList()
+    Crawler.crawling();
