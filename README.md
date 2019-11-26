@@ -28,7 +28,7 @@
 |title|contents|
 |---|-----------------------------------|
 |Language|C, C++, Python, Java|
-|Role|Team Leader|
+|Role|Team Member|
 * **송일한 (신소재공학과, 3학년, xmilexx)**
 
 |title|contents|
