@@ -27,7 +27,7 @@
 
 |title|contents|
 |---|-----------------------------------|
-|Language|C, C++, Java, Swift, Python|
+|Language|C, C++, Python, Java|
 |Role|Team Leader|
 * **송일한 (공학계열, )**
 
