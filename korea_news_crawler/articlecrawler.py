@@ -18,7 +18,7 @@ class ArticleCrawler(object):
     def __init__(self):
         self.categories = {'정치': 100, '경제': 101, '사회': 102, '생활문화': 103, '세계': 104, 'IT과학': 105, '오피니언': 110,
                            'politics': 100, 'economy': 101, 'society': 102, 'living_culture': 103, 'world': 104, 'IT_science': 105, 'opinion': 110}
-        self.selected_categories = []
+        self.selected_categories = [] 
         self.date = {'start_year': 0, 'start_month': 0, 'end_year': 0, 'end_month': 0}
         self.user_operating_system = str(platform.system())
 
@@ -103,7 +103,7 @@ class ArticleCrawler(object):
         print("The crawler starts")
 
         for URL in day_urls:
-
+            print(URL)
             regex = re.compile("date=(\d+)")
             news_date = regex.findall(URL)[0]
 
@@ -152,9 +152,10 @@ class ArticleCrawler(object):
                     tag_company = document_content.find_all('meta', {'property': 'me2:category1'})
                     text_company = ''  # 언론사 초기화
                     text_company = text_company + str(tag_company[0].get('content'))
+                    print(text_company)
                     if not text_company:  # 공백일 경우 기사 제외 처리
                         continue
-                        
+                    
                     # CSV 작성
                     wcsv = writer.get_writer_csv()
                     wcsv.writerow([news_date, category_name, text_company, text_headline, text_sentence, content_url])
@@ -169,7 +170,6 @@ class ArticleCrawler(object):
                     del request_content, document_content
                     pass
         writer.close()
-
     def start(self):
         # MultiProcess 크롤링 시작
         for category_name in self.selected_categories:
@@ -179,6 +179,6 @@ class ArticleCrawler(object):
 
 if __name__ == "__main__":
     Crawler = ArticleCrawler()
-    Crawler.set_category("생활문화", "IT과학")
-    Crawler.set_date_range(2017, 1, 2018, 4)
+    Crawler.set_category("생활문화")
+    Crawler.set_date_range(2017, 3, 2017, 3)
     Crawler.start()

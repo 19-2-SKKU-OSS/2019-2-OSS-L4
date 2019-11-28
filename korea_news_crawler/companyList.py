@@ -54,4 +54,4 @@ class CompanyList(object):
 
 if __name__ == "__main__":
     Crawler = CompanyList()
-    Crawler.crawling("네이버");
+    Crawler.crawling("다음");
