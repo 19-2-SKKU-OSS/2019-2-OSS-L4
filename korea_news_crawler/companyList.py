@@ -19,8 +19,6 @@ class CompanyList(object):
     def __init__(self):
         pass
 
-
-
     @staticmethod
     def get_url_data(url, max_tries=10):
         remaining_tries = int(max_tries)
