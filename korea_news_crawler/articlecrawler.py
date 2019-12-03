@@ -21,12 +21,19 @@ class ArticleCrawler(object):
         self.selected_categories = []
         self.date = {'start_year': 0, 'start_month': 0, 'end_year': 0, 'end_month': 0}
         self.user_operating_system = str(platform.system())
+        self.count = 0
+        self.procount = 0
 
     def set_category(self, *args):
         for key in args:
             if self.categories.get(key) is None:
                 raise InvalidCategory(key)
         self.selected_categories = args
+        
+        
+    def set_count(self, usercount):
+        self.count = usercount
+    
 
     def set_date_range(self, start_year, start_month, end_year, end_month):
         args = [start_year, start_month, end_year, end_month]
@@ -101,8 +108,14 @@ class ArticleCrawler(object):
         day_urls = self.make_news_page_url(url, self.date['start_year'], self.date['end_year'], self.date['start_month'], self.date['end_month'])
         print(category_name + " Urls are generated")
         print("The crawler starts")
+        
+        wcsv = writer.get_writer_csv()
+        wcsv.writerow(['news_date', 'category_name', 'text_company', 'text_headline', 'text_sentence', 'content_url'])
 
         for URL in day_urls:
+        
+            if(self.count == self.procount):
+                break
 
             regex = re.compile("date=(\d+)")
             news_date = regex.findall(URL)[0]
@@ -159,6 +172,12 @@ class ArticleCrawler(object):
                     wcsv = writer.get_writer_csv()
                     wcsv.writerow([news_date, category_name, text_company, text_headline, text_sentence, content_url])
                     
+                    
+                    self.procount = self.procount+1
+                    
+                    if(self.count == self.procount):
+                        break
+                    
                     del text_company, text_sentence, text_headline
                     del tag_company 
                     del tag_content, tag_headline
@@ -169,6 +188,7 @@ class ArticleCrawler(object):
                     del request_content, document_content
                     pass
         writer.close()
+        
 
     def start(self):
         # MultiProcess 크롤링 시작
@@ -179,6 +199,7 @@ class ArticleCrawler(object):
 
 if __name__ == "__main__":
     Crawler = ArticleCrawler()
-    Crawler.set_category("생활문화", "IT과학")
-    Crawler.set_date_range(2017, 1, 2018, 4)
+    Crawler.set_category("IT과학")
+    Crawler.set_date_range(2017, 1, 2017, 2)
+    Crawler.set_count(30)
     Crawler.start()
