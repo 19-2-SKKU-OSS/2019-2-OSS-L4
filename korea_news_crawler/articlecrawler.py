@@ -101,9 +101,7 @@ class ArticleCrawler(object):
         day_urls = self.make_news_page_url(url, self.date['start_year'], self.date['end_year'], self.date['start_month'], self.date['end_month'])
         print(category_name + " Urls are generated")
         print("The crawler starts")
-        
-        wcsv = writer.get_writer_csv()
-        wcsv.writerow(['news_date', 'category_name', 'text_company', 'text_headline', 'text_sentence', 'content_url'])
+
         for URL in day_urls:
 
             regex = re.compile("date=(\d+)")
@@ -158,6 +156,7 @@ class ArticleCrawler(object):
                         continue
                         
                     # CSV 작성
+                    wcsv = writer.get_writer_csv()
                     wcsv.writerow([news_date, category_name, text_company, text_headline, text_sentence, content_url])
                     
                     del text_company, text_sentence, text_headline
@@ -169,7 +168,7 @@ class ArticleCrawler(object):
                     # wcsv.writerow([ex, content_url])
                     del request_content, document_content
                     pass
-                    writer.close()
+        writer.close()
 
     def start(self):
         # MultiProcess 크롤링 시작
@@ -180,6 +179,6 @@ class ArticleCrawler(object):
 
 if __name__ == "__main__":
     Crawler = ArticleCrawler()
-    Crawler.set_category("IT과학")
-    Crawler.set_date_range(2017, 1, 2017, 2)
+    Crawler.set_category("생활문화", "IT과학")
+    Crawler.set_date_range(2017, 1, 2018, 4)
     Crawler.start()
