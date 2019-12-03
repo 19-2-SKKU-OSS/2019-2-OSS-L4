@@ -10,7 +10,7 @@ class SportCrawler:
     def __init__(self):
         self.category = {'야구': "kbaseball", '축구': "kfootball", '농구': "basketball", '배구': "volleyball", '일반 스포츠': "general", 'e스포츠': "esports"}
         self.selected_category = []
-        self.date = {'startyear': 0, 'endyear': 0, 'endmonth': 0}
+        self.date = {'startyear': 0, 'endyear': 0, 'endmonth': 0, 'startmonth': 0}
 
     def javascript_totalpage(self, url):
         totalpage_url = url
@@ -73,6 +73,7 @@ class SportCrawler:
                         Month_Day = "0" + str(Month_Day)
                     url = url + str(year) + str(Month) + str(Month_Day)
                     final_url = url  # page 날짜 정보만 있고 page 정보가 없는 url 임시 저장
+                    print("*****************",url)
                     totalpage = self.javascript_totalpage(url)  # TotalPage 확인
                     for page in range(1, totalpage + 1):
                         url = final_url  # url page 초기화
@@ -91,9 +92,10 @@ if __name__ == "__main__":
     for url_label in Url_category:  # URL 카테고리
         category = Category[Url_category.index(url_label)]  # URL 인덱스와 Category 인덱스가 일치할 경우 그 값도 일치
         url = "https://sports.news.naver.com/" + url_label + "/news/index.nhn?isphoto=N&date="
-        final_urlday = ""
-        final_urlday = self.Make_url(url, 2017, 2018, 1, 6)  # 2017년 1월 ~ 2018년 6월 마지막 날까지 기사를 수집합니다.
-        print("succeed making url")
+        final_urlday = SportCrawler()
+        final_urlday.Make_url(url, 2018, 2018, 1, 2)  # 2017년 1월 ~ 2018년 6월 마지막 날까지 기사를 수집합니다.
+        
+        print("succeed making url : ", final_urlday)
 
         file = open("Sport_" + category + ".csv", 'w', encoding='euc-kr', newline='')
         wcsv = csv.writer(file)
