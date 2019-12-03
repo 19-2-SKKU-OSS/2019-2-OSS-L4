@@ -2,22 +2,22 @@
 2019-2-OSS-L4
 
 ###  Original Project
-### - Korean News Crawler (https://github.com/lumyjuwon/KoreaNewsCrawler)
-### - 대량의 뉴스 데이터를 수집하기 위해 만들어진 뉴스 크롤러입니다.
+ - Korean News Crawler (https://github.com/lumyjuwon/KoreaNewsCrawler)
+ - 대량의 뉴스 데이터를 수집하기 위해 만들어진 뉴스 크롤러입니다.
 
 ### Objective
 
-### - 언론사를 선택해 언론사 별로 크롤링을 할 수 있게한다.
-### - 스포츠 기사 크롤링 기능을 추가한다.
+ - 언론사를 선택해 언론사 별로 크롤링을 할 수 있게한다.
+ - 스포츠 기사 크롤링 기능을 추가한다.
 
 ### Link
+ - 네이버 언론사
+     https://news.naver.com/main/officeList.nhn
+ - 다음 언론사
+     https://media.daum.net/cp/
 
-### - 네이버 언론사
-###     https://news.naver.com/main/officeList.nhn
-### - 다음 언론사
-###     https://media.daum.net/cp/
+ 추가기능
+ - 해외축구 EPL 순위 출력기능
+ - EPL팀 이름 입력 시 순위 출력기능
+ - 해외야구 팀 순위 출력기능
 
-### 추가기능
-### - 해외축구 EPL 순위 출력기능
-### - EPL팀 이름 입력 시 순위 출력기능
-### - 해외야구 팀 순위 출력기능
