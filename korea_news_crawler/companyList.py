@@ -35,18 +35,18 @@ class CompanyList(object):
     def crawling(self, site):
         URL = ""
         ul_class = ""
-        # 기사 URL 형식
+        # 네이버 언론사 크롤링 
         if site == "네이버":
             URL = "https://news.naver.com/main/officeList.nhn"
             ul_class = "group_list"
+        # 다음 언론사 크롤링
         elif site == "다음":
             URL = "https://media.daum.net/cp/"
             ul_class = "list_cp"
         url = urlopen(URL)
         document = BeautifulSoup(url, 'html.parser')
-
-        # html - newsflash_body - type06_headline, type06
-        # 각 페이지에 있는 기사들 가져오기
+        
+        # 모든 언론사 이름 추출
         for link in document.find_all("ul", {"class": ul_class}):
             for li in link.find_all("li"):
                 print(li.find("a").get_text())
