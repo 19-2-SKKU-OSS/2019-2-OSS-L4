@@ -18,12 +18,6 @@ driver.get(URL)
 
 driver.find_element_by_css_selector('#wfootballPlayerRecordBody > table > thead > tr > th:nth-child(' + str(categoryDic[category]) +') > a').click()
 
-ranks = driver.find_elements_by_css_selector('#wfootballPlayerRecordBody > table > tbody > tr > td.num > div')
-players = driver.find_elements_by_css_selector('#wfootballPlayerRecordBody > table > tbody > tr > td.align_l > div > span.name')
-teams = driver.find_elements_by_css_selector('#wfootballPlayerRecordBody > table > tbody > tr > td.align_l > div > span.team')
-scores = driver.find_elements_by_css_selector('#wfootballPlayerRecordBody > table > tbody > tr > td.selected > div')
-
-
 for i in range(1, 20):    
     rank = driver.find_element_by_css_selector('#wfootballPlayerRecordBody > table > tbody > tr:nth-child(' + str(i) + ') > td.num > div').text
     player = driver.find_element_by_css_selector('#wfootballPlayerRecordBody > table > tbody > tr:nth-child(' + str(i) + ') > td.align_l > div > span.name').text
