@@ -52,4 +52,5 @@ class CompanyList(object):
 
 if __name__ == "__main__":
     Crawler = CompanyList()
-    Crawler.crawling("다음");
+    company = input("언론사 입력 : ");
+    Crawler.crawling(company);
