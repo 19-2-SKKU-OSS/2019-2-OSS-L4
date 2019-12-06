@@ -34,11 +34,19 @@ class TrendCrawler:
                 driver2.get(article.get_attribute("href"))
                 title = driver2.find_element_by_css_selector("#articleTitle").text
                 content = driver2.find_element_by_css_selector("#articleBodyContents").text                
+                comments_elements = driver2.find_elements_by_css_selector(".u_cbox_list > li")
+                comments = []
+                #상위 댓글 5개 가져오기
+                for i, comment in enumerate(comments_elements):
+                    if i == 5:
+                        break
+                    comments.append(comment.text)
                 # 데이터 딕셔너리 생성 후 data_list에 append
                 data = {}
                 data['category'] = category.text
                 data['title'] = title
                 data['contents'] = content
+                data['comments'] = comments
                 data_list.append(data)
 
         self.data = data_list
