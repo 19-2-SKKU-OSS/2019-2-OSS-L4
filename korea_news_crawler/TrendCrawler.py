@@ -25,28 +25,33 @@ class TrendCrawler:
 
         data_list = []
 
-        
         for category in categories:
             category.click()
             articles = driver.find_elements_by_css_selector("#right\.ranking_contents > ul > li > a")
-            # 기사에서 제목과 내용 가져오기
+            # 기사에서 제목과 내용, 상위댓글 5개 가져오기
             for article in articles:
                 driver2.get(article.get_attribute("href"))
                 title = driver2.find_element_by_css_selector("#articleTitle").text
                 content = driver2.find_element_by_css_selector("#articleBodyContents").text                
                 comments_elements = driver2.find_elements_by_css_selector(".u_cbox_list > li")
                 comments = []
-                #상위 댓글 5개 가져오기
                 for i, comment in enumerate(comments_elements):
                     if i == 5:
                         break
                     comments.append(comment.text)
-                # 데이터 딕셔너리 생성 후 data_list에 append
+                #spiLayer > div._reactionModule.u_likeit > ul > li.u_likeit_list.good > a > span.u_likeit_list_count._count
+                like = driver2.find_element_by_css_selector("#spiLayer > div._reactionModule.u_likeit > ul > li.u_likeit_list.good > a > span.u_likeit_list_count._count").text
+                hate = driver2.find_element_by_css_selector("#spiLayer > div._reactionModule.u_likeit > ul > li.u_likeit_list.angry > a > span.u_likeit_list_count._count").text
+                reactions=[]
+                reactions.append(like)
+                reactions.append(hate)
+                
                 data = {}
                 data['category'] = category.text
                 data['title'] = title
                 data['contents'] = content
                 data['comments'] = comments
+                data['reactions'] = reactions
                 data_list.append(data)
 
         self.data = data_list
