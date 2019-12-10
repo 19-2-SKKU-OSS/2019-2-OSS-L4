@@ -33,8 +33,8 @@
 
 |title|contents|
 |---|-----------------------------------|
-|Language|C, C++, Java, Swift, Python|
-|Role|Team Leader|
+|Language|C, C++, Java|
+|Role|Team Member|
 
 ## 2. Original Project
 * Korean News Crawler (https://github.com/lumyjuwon/KoreaNewsCrawler)  
