@@ -1,5 +1,6 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
+import csv
 
 year = str(input("시즌 입력 : "))
 league = str(input("리그 입력 : "))
@@ -17,10 +18,17 @@ soup = BeautifulSoup(html, 'html.parser')
 
 L = soup.select("#wfootballTeamRecordBody > table > tbody")
 P = soup.select("#_currentYearButton > em")
+fileName = 'result_' + category.get(league) + "_" + year + ".csv" 
+f = open(fileName, 'w', encoding='utf-8')
+writer = csv.writer(f)
 
 print(P[0].text)
+writer.writerow([P[0].text])
 
 for i in range(1, team_counts.get(league) + 1):
     htmlSelect = "#wfootballTeamRecordBody > table > tbody > tr:nth-child(" + str(i) + ") > td.align_l > div > span"
     team = soup.select(htmlSelect)
-    print('%d '%i,team[0].text)
+    ##print('%d '%i,team[0].text)
+    writer.writerow([str(i) + " " + team[0].text])
+
+print("Crawling Successfully! check csv file.")
